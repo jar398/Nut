@@ -1,6 +1,14 @@
 Nut user's guide
 Jonathan Rees 19 August 1997
 
+For method description, please see
+    Yanai, R.D.  1994.  
+    A steady-state model of nutrient uptake accounting for newly-grown roots.
+    Soil. Sci. Soc. Am. J. 58:1562-1571.
+    doi:10.2136/sssaj1994.03615995005800050041x
+    http://hydrology1.nmsu.edu/nm-soil-water-model/Steady-state_model.pdf
+Kindly reference this article when reporting on uses of this software.
+
 The program reads a single file, the "control file," and writes a
 single file, the "results file".  The program prompts for the names of
 these files.  If a file exists with the name that was specified for

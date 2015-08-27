@@ -1,6 +1,14 @@
 c=======================================================================
 c Soil nutrient uptake model with switches file processing. 
 c Modified from OurPrism2.f by Jonathan Rees.
+c See file LICENSE for license.
+c For method description, please see
+c    Yanai, R.D.  1994.  
+c    A steady-state model of nutrient uptake accounting for newly-grown roots.
+c    Soil. Sci. Soc. Am. J. 58:1562-1571.
+c    doi:10.2136/sssaj1994.03615995005800050041x
+c    http://hydrology1.nmsu.edu/nm-soil-water-model/Steady-state_model.pdf
+c Kindly reference this article when reporting on uses of this software.
 
 c User documentation is in a separate file.  Don't get caught without it.
 
