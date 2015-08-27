@@ -1,0 +1,116 @@
+Nut user's guide
+Jonathan Rees 19 August 1997
+
+The program reads a single file, the "control file," and writes a
+single file, the "results file".  The program prompts for the names of
+these files.  If a file exists with the name that was specified for
+the results file, then the program asks you whether you would like to
+replace it.  If you say no (actually, if you don't say "y" or "yes"),
+you can enter a different file name.
+
+
+The control file file has the following form:
+  1. Comment lines
+     One blank line
+  2. Control switches lines
+     One blank line
+  3. Input / results column designation
+  4. Input record lines
+  5. End of file
+
+
+1. Comment lines
+   Initial nonblank lines are copied verbatim to the output file.
+
+2. Control switches lines
+   A sequence of lines, with each line controlling the disposition of
+   one of the simulation variables.
+   Each line has the form
+        <varname>  <units>  <status>  <parameter>
+   where these four fields are tab-separated.  The parameter
+   is optional if <status> is "input".
+   See below for a list of <varname>s.
+
+   Possible values for <status> field: (default if not specified is
+   "calculated")
+     Fixed         The value is constant, and is specified in the
+		     parameter field.
+     Input         A new value is obtained at each time step from an
+		     input record.
+     Calculated    The value is calculated or updated in a manner
+		     idiosyncratic to the variable.  The parameter
+		     field may supply an initial value.  See below.
+     Linear        Variable grows linearly with time (see below).
+		     Parameter is initial value.
+     Exponential   Variable grows exponentially (see below).
+		     Parameter is initial value.
+
+State variables:
+  name     units      (*)
+  ----     -----      ---
+  alpha    cm/s       FIC? Root absorbing power
+  b        1          F C  Soil buffer capacity (cm3/cm3)
+  C0       mol/cm3      C  Concentration at root surface
+  Cav      mol/cm3    FIC  Average nutrient concentration
+  De       cm2/s      FIC  Effective diffusion coefficient
+  Dl	   1 ??	      F	   Diffusion coefficient of ion in water
+  dt       s          FI   Duration of a timestep
+  f        1            C  Fugacity (for computing v0) (NYI)
+  f_slope  1/s        F    Change in f (NYI)
+  growth   1/s        F    Growth rate (exponential; cm/cm/s)
+  growth   cm/s       F    Growth rate (linear; cm/s)
+  iter	   1	        C  Iteration number  [flush this?]
+  Kd       cm3/g      FI   slope of adsorption isotherm
+  Km       mol/cm3    FI   Solution concentration at which net influx
+  L        cm         FILE Root length
+  Lv	   1/cm2      FI   Root length per unit volume
+  r0       cm         FI?  Root radius
+  rho	   g/cm3      FI   Soil bulk density
+  rx       cm         FIC  Average radial distance to the next root's 
+                           zone of influence
+  source   mol/cm3/s  FI   Nutrient supply/depletion (Cav pump)
+  steps    1          F C  Number of timesteps to run
+  t        s            C  Time
+  theta    1          FI   Water content (cm3/cm3)
+  U        mol          C  Uptake (this is the main output of the model)
+  Unew     mol        FI   Uptake of new roots
+  v0       cm/s       FI   Inward radial velocity of water at root surf
+  Vmax     mol/cm2/s  FI   Maximum influx at high concentration is 1/2 Vmax
+  w0       cm3/s      FI   Rate of water uptake
+
+The column marked (*) lists permissible settings of the status field:
+F = fixed, I = input, C = calculated, L = linear, E = exponential.
+
+The units field should agree in dimensionality with the units given
+above.  In most cases, the unit given above is the only unit
+supported, but a few additional units are supported:
+
+    day
+    1/day
+    m
+
+Other unit conversions will be added in the future.
+
+CALCULATION -- Some variables can get their values by applying
+formulas to some of the other variables.  -- This documentation is
+incomplete!  It should, but doesn't, give the particular formulas that
+are used.  For now consult the source code (Nut.f), Ruth's paper, me,
+or Ruth.  I will fill in this gap when I get an opportunity.  -Jonathan
+
+
+3. Input / results column designations
+
+This single line should be a list of tab-separated variable names.
+The results file will tabulate values of those variables, and no
+others.  The list must include all of the input variables; the order
+in which the input variables occur in this list is the order in which
+they will be read from the input records.  Note that this means that
+the results file is a superset of the input records, in a "fill in the
+blanks" manner.
+
+4. Input records
+
+If N of the variables in the switches list have status "input", then
+the simulation program will expect to see that many numbers on each
+input record.  Tabs and spaces in between successive numbers are
+ignored.

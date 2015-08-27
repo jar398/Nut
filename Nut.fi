@@ -1,0 +1,158 @@
+c Common variables for NUT -- COMMON /NUTVARS/
+
+c ======================================================================
+c State variable descriptions
+
+      INTEGER Valpha,
+     >        Vb,
+     >        VC0,
+     >        VCav,
+     >        VCmin,
+     >        VDe,
+     >        VDl,
+     >        Vdt,
+     >        Vf,
+     >        Vf_slope,
+     >        Vgrowth,
+     >        Viter,
+     >        VKd,
+     >        VKm,
+     >        VL,
+     >        Voalpha,
+     >        Vr0,
+     >        Vrho,
+     >        Vrx,
+     >        Vsource,
+     >        Vsteps,
+     >        Vt,
+     >        Vtheta,
+     >        VU,
+     >        VUnew,
+     >        Vv0,
+     >        VVmax,
+     >        Vw0, VLv
+      PARAMETER (Valpha=1,
+     >           Vb=2,
+     >           VC0=3,
+     >           VCav=4,
+     >           VCmin=5,
+     >           VDe=6,
+     >           VDl=7,
+     >           Vdt=8,
+     >           Vf=9,
+     >           Vf_slope=10,
+     >           Vgrowth=11,
+     >           Viter=12,
+     >           VKd=13,
+     >           VKm=14,
+     >           VL=15,
+     >           Voalpha=16,
+     >           Vr0=17,
+     >           Vrho=18,
+     >           Vrx=19,
+     >           Vsource=20,
+     >           Vsteps=21,
+     >           Vt=22,
+     >           Vtheta=23,
+     >           VU=24,
+     >           VUnew=25,
+     >           Vv0=26,
+     >           VVmax=27,
+     >           Vw0=28, VLv=29)
+
+c ======================================================================
+c Uptake simulation state variables
+
+      DOUBLE PRECISION alpha,
+     >                 b,
+     >                 C0,
+     >                 Cav,
+     >                 Cmin,
+     >                 De,
+     >                 Dl,
+     >                 dt,
+     >                 f,
+     >                 f_slope,
+     >                 growth,
+     >                 Kd,
+     >                 Km,
+     >                 L,
+     >                 oalpha,
+     >                 r0,
+     >                 rho,
+     >                 rx,
+     >                 source,
+     >                 t,
+     >                 theta,
+     >                 U,
+     >                 Unew,
+     >                 v0,
+     >                 Vmax,
+     >                 w0, Lv
+      COMMON /STATE/ alpha,
+     >               b,
+     >               C0,
+     >               Cav,
+     >               Cmin,
+     >               De,
+     >               Dl,
+     >               dt,
+     >               f,
+     >               f_slope,
+     >               growth,
+     >               Kd,
+     >               Km,
+     >               L,
+     >               oalpha,
+     >               r0,
+     >               rho,
+     >               rx,
+     >               source,
+     >               t,
+     >               theta,
+     >               U,
+     >               Unew,
+     >               v0,
+     >               Vmax,
+     >               w0,
+     >		     Lv
+
+c ======================================================================
+c I/O areas
+c
+c  NVARS = total number of variables
+c  NPAR = number of parameters (i.e. inputs)
+c  NOUT = number of outputs
+c  VALS = values of all variables
+c  VARNAMES = names of all variables
+c
+      INTEGER NVARS
+        PARAMETER (NVARS=29)
+      DOUBLE PRECISION VALS(NVARS)
+      DOUBLE PRECISION SCALE(NVARS)
+      CHARACTER*15 VARNAMES(NVARS)
+      CHARACTER*15 UNITNAMES(NVARS)
+      INTEGER STATUS(NVARS)
+      INTEGER INVARS(NVARS), NUMINVARS
+      INTEGER COLVARS(NVARS), NCOLS
+      CHARACTER*300 FORM
+      INTEGER FORMLEN      ! Length of FORM
+      CHARACTER TAB
+      COMMON /NUTVARS/ VALS, VARNAMES, UNITNAMES, STATUS, SCALE,
+     >  INVARS, NUMINVARS, COLVARS, NCOLS, FORM, FORMLEN, TAB
+
+c ======================================================================
+c Constants
+c
+      INTEGER INPUT, FIXED, CALCULATED, LINEAR, EXPONENTIAL
+        PARAMETER (INPUT=0, FIXED=1, CALCULATED=2, LINEAR=3, 
+     >             EXPONENTIAL=4)
+
+      INTEGER STDIN, STDOUT
+        PARAMETER (STDIN=5, STDOUT=6)
+
+      LOGICAL DEBUGP, DEBUG1
+        PARAMETER (DEBUGP=.FALSE., DEBUG1=.TRUE.)
+
+      DOUBLE PRECISION  PI
+        PARAMETER (PI=3.14159265)

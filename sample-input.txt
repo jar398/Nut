@@ -1,0 +1,22 @@
+This is JAR's sample control file for Nut.
+Ruth sez: This file should duplicate OurPrism output (everything fixed).
+There are no inputs.
+
+steps	1	fixed	10
+dt	day	fixed	1
+L	cm	fixed	285
+rx	cm	fixed	2
+r0	cm	fixed	3.50E-02
+v0	cm/s	fixed	5.66E-07
+Vmax	mol/cm2/s	fixed	2.68E-13
+Km	mol/cm3	fixed	1.60E-08
+alpha	cm/s	fixed	1.86e-05
+Cav	mol/cm3	calculated	1.90E-07
+De	cm2/s	fixed	8.17E-07
+b	1	fixed	5.84
+theta	1	calculated
+t	day	calculated
+
+t	L	r0	rx	Vmax	Km	v0	De	b	theta	Cav	U
+
+
